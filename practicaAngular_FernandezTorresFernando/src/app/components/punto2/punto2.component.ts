@@ -70,6 +70,7 @@ export class Punto2Component implements OnInit {
         }
       } else {
         this.juego.intentos--
+        this.juego.estadoImg = "ahorcadito/" + (6 - this.juego.intentos) + ".jpg"
       }
       // si no quedan intentos o el juego termino se muesta el modal
       if (!this.juego.intentos || this.juego.fin) {
@@ -79,8 +80,8 @@ export class Punto2Component implements OnInit {
   }
 
   definirClaseLetra(letra: boolean): string {
-    if (letra) return "btn btn-secondary m-1"
-    return "btn btn-danger m-1"
+    if (letra) return "btn btn-secondary m-1 col-2 col-lg-1"
+    return "btn btn-danger m-1 col-2 col-lg-1"
   }
 
   jugarDeNuevo() {
