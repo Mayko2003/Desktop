@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="row container mx-auto">
+    <!-- contenedor del estado del juego (img, intentos, palabra actual) -->
+    <div class="row mx-auto container d-flex col-12 my-5">
+        <!-- img del estado del juego -->
+        <div class="col-12 col-md-6 border border-3 rounded-2">
+            <img src="assets/{{juego.estadoImg}}" class="img-fluid">
+        </div>
+        <!-- intentos y palabra actual del estado del juego -->
+        <div class="col-12 col-md-6 border border-3 rounded-2 text-center my-2 my-md-0">
+            <!-- palabra actual -->
+            <div class="d-flex justify-content-center">
+                <h1 class="mx-1 text-center" *ngFor="let letra of juego.estadoJuego">{{letra}}</h1>
+            </div>
+            <hr>
+            <!-- informacion de los intentos -->
+            <div class="my-5 text-center">
+                <h2>Numero de Intentos</h2>
+                <button class="btn btn-primary rounded-circle text-white" disabled="true">{{juego.intentos}}</button>
+                <br>
+                <button (click)="jugarDeNuevo()" class="btn btn-primary mt-3"
+                    [hidden]="!(juego.fin || !juego.intentos)">Jugar de Nuevo</button>
+            </div>
+        </div>
+    </div>
+    <!-- letras para seleccionar -->
+    <div class="mx-auto my-5 col-6">
+        <button [class]="definirClaseLetra(letra.estado)" [disabled]="!letra.estado" *ngFor="let letra of letras"
+            (click)="intentarLetra(letra)">{{letra.letra}}</button>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button id="btnResultado" type="button" hidden="true" class="btn btn-primary" data-bs-toggle="modal"
+    data-bs-target="#exampleModal">
+    Button Resultado
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resultado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="juego.fin else pedisteBlock">GANASTE!!!</p>
+                <ng-template #pedisteBlock>
+                    <p>PERDISTE!!!</p>
+                    <p>La palabra era: {{juego.palabra}}</p>
+                </ng-template>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="jugarDeNuevo()">Jugar de Nuevo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="container">
+    <!-- carousel -->
+    <div class="carousel slide d-flex justify-content-center">
+        <div class="carousel-inner my-5">
+            <!-- noticia activa -->
+            <div class="carousel-item active">
+                <!-- info de la noticia -->
+                <div class="carousel-caption text-info">
+                    <h1>{{noticia.titulo}}</h1>
+                    <p>{{noticia.noticia}}</p>
+                </div>
+                <!-- img de la noticia -->
+                <img src="assets/{{noticia.img}}" class="w-100 img-fluid">
+            </div>
+            <!-- boton de item anterior -->
+            <button class="carousel-control-prev" type="button" (click)="anterior()">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <!-- boton de item posterior -->
+            <button class="carousel-control-next" type="button" (click)="siguiente()">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
