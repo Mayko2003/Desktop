@@ -1,0 +1,156 @@
+<div class="container">
+    <app-header></app-header>
+    <!-- MAIN -->
+    <div class="container main row mt-5">
+        <!-- Tabla de datos -->
+        <div class="table-responsive col-8 d-none d-md-block">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th scope="col">
+                            <div class="text-center">
+                                <img src="assets/icon/usd.ico" class="icono-moneda"><br>
+                                <p>USD</p>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="text-center">
+                                <img src="assets/icon/eur.ico" class="icono-moneda"><br>
+                                <p>EUR</p>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="text-center">
+                                <img src="assets/icon/gbp.ico" class="icono-moneda"><br>
+                                <p>GBP</p>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="text-center">
+                                <img src="assets/icon/jpy.ico" class="icono-moneda"><br>
+                                <p>JPY</p>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="text-center">
+                                <img src="assets/icon/ars.ico" class="icono-moneda"><br>
+                                <p>ARS</p>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><img src="assets/icon/usd.ico" class="icono-moneda"></th>
+                        <th scope="row">
+                            <div class="text-center text">
+                                1 USD<br>inverse
+                            </div>
+                        </th>
+                        <td>1.0000<br>1.0000</td>
+                        <td>0.9200<br>1.0800</td>
+                        <td>0.7700<br>1.3000</td>
+                        <td>125.52<br>0.0080</td>
+                        <td>112.71<br>0.0089</td>
+                    </tr>
+                    <tr>
+                        <th><img src="assets/icon/eur.ico" class="icono-moneda"></th>
+                        <th scope="row">
+                            <div class="text-center">
+                                1 EUR<br>inverse
+                            </div>
+                        </th>
+                        <td>1.0800<br>0.9200</td>
+                        <td>1.0000<br>1.0000</td>
+                        <td>0.8300<br>1.2000</td>
+                        <td>136.03<br>0.0074</td>
+                        <td>122,09<br>0,0082</td>
+
+                    </tr>
+                    <tr>
+                        <th><img src="assets/icon/gbp.ico" class="icono-moneda"></th>
+                        <th scope="row">
+                            <div class="text-center">
+                                1 GBP<br>inverse
+                            </div>
+                        </th>
+                        <td>1.3000<br>0.7700</td>
+                        <td>1.2000<br>0.8300</td>
+                        <td>1.0000<br>1.0000</td>
+                        <td>163.32<br>0.0061</td>
+                        <td>146,60<br>0.0068</td>
+                    </tr>
+                    <tr>
+                        <th><img src="assets/icon/jpy.ico" class="icono-moneda"></th>
+                        <th scope="row">
+                            <div class="text-center">
+                                1 JPY<br>inverse
+                            </div>
+                        </th>
+                        <td>0.0080<br>125.52</td>
+                        <td>0.0074<br>136.03</td>
+                        <td>0.0061<br>163.32</td>
+                        <td>1.0000<br>1.0000</td>
+                        <td>0.9000<br>1.1100</td>
+                    </tr>
+                    <tr>
+                        <th><img src="assets/icon/ars.ico" class="icono-moneda"></th>
+                        <th scope="row">
+                            <div class="text-center">
+                                1 ARS<br>inverse
+                            </div>
+                        </th>
+                        <td>0.0089<br>112.71</td>
+                        <td>0,0082<br>122,09</td>
+                        <td>0.0068<br>146,60</td>
+                        <td>1.1100<br>0.9000</td>
+                        <td>1.0000<br>1.0000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulario de conversion de divisas -->
+        <div class="container col-md-4 col-sm-12">
+            <div class="text-center bg-info text-white">
+                <h3 class="p-1">Convertidor de divisas</h3>
+            </div>
+            <form class="border border-3 p-3 bg-primary text-white" method="post">
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" min="0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="desde" class="form-label">De</label>
+                    <select class="form-select" id="desde" required>
+                        <option value="usd" selected>USD Doláres EEUU</option>
+                        <option value="eur">EUR Euros</option>
+                        <option value="gbp">GBP Libras esterlinas</option>
+                        <option value="jpy">JPY Yenes</option>
+                        <option value="cny">CNY Renminbi</option>
+                        <option value="aud">AUD Doláres autralianos</option>
+                        <option value="btc">BTC Bitcoin</option>
+                        <option value="ars">ARS Pesos argentinos</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="hacia" class="form-label">A</label>
+                    <select class="form-select" id="hacia" required>
+                        <option value="ars" selected>ARS Pesos argentinos</option>
+                        <option value="usd">USD Doláres EEUU</option>
+                        <option value="eur">EUR Euros</option>
+                        <option value="gbp">GBP Libras esterlinas</option>
+                        <option value="jpy">JPY Yenes</option>
+                        <option value="cny">CNY Renminbi</option>
+                        <option value="aud">AUD Doláres autralianos</option>
+                        <option value="btc">BTC Bitcoin</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-warning">Convertir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
