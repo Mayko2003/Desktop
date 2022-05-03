@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page C</title>
+  <link rel="stylesheet" href="./bootstrap5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Barra Navegacion -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">TP2</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="./page1.html" target="_blank">Page 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./pagea.html">Portal de peliculas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./pageb.html">Cotizacion de divisas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Traductor</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- MAIN -->
+    <div class="container main row mt-5 ">
+      <!-- Formulario de traduccion -->
+      <form method="post">
+        <div class="mb-3 row">
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="ingles"><img src="./icon/english.ico"
+              class="w-25 h-75 me-1">Ingles</button>
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="frances"><img src="./icon/french.ico"
+              class="w-25 h-75 me-1">Frances</button>
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="español"><img src="./icon/spain.ico"
+              class="w-25 h-75 me-1">Español</button>
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="italiano"><img src="./icon/italian.ico"
+              class="w-25 h-75 me-1">Italiano</button>
+        </div>
+        <div class="mb-3 row">
+          <textarea class="form-control" id="text" rows="7" placeholder="Ingrese texto a traducir..."
+            maxlength="512" required></textarea>
+        </div>
+        <div class="mb-3 row">
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="ingles"><img src="./icon/english.ico"
+              class="w-25 h-75 me-1">Ingles</button>
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="frances"><img src="./icon/french.ico"
+              class="w-25 h-75 me-1">Frances</button>
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="español"><img src="./icon/spain.ico"
+              class="w-25 h-75 me-1">Español</button>
+          <button type="button" class="btn btn-primary col-6 col-md-3" value="italiano"><img src="./icon/italian.ico"
+              class="w-25 h-75 me-1">Italiano</button>
+        </div>
+        <div class="mb-3 row">
+          <button type="submit" class="btn btn-primary col-12">TRADUCIR</button>
+        </div>
+      </form>
+      <!-- Resultado de traduccion -->
+      <div style="width: 100%;">
+        <div class="mb-3 row">
+          <textarea class="form-control w-100" name="traduccion" id="traduccion" rows="7" maxlength="512"></textarea>
+        </div>
+        <div class="mb-3 row">
+          <img src="./icon/copy.svg" class="btn col-4 icono-traduccion">
+          <img src="./icon/clean.svg" class="btn col-4 mx-auto icono-traduccion">
+          <img src="./icon/exit.svg" class="btn col-4 icono-traduccion">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./bootstrap5/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

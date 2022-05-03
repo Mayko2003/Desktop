@@ -1,0 +1,16 @@
+/* se utilizan estilos personalizados debido a que los tamaños de
+   de ancho y altura de bootstrap no son del tamaño que se necesita
+*/
+
+.icono-moneda{
+    height: 1em;
+    width: 1em;
+}
+.icono-traduccion {
+    height: 10%;
+    width: 10%;
+}
+.portada-pelicula{
+    height: 20em;
+    width: 100%;
+}
