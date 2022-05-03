@@ -1,0 +1,32 @@
+<div class="container my-5">
+    <div class="mx-auto col-6">
+        <form action="" method="post" id="formPasaje">
+            <div class="my-3">
+                <label for="dniPasajero" class="label-form">DNI Pasajero</label>
+                <input type="number" class="form-control" name="dniPasajero" id="dniPasajero"
+                    [(ngModel)]="pasaje.dniPasajero" required>
+            </div>
+            <div class="my-3">
+                <label for="precioPasaje" class="label-form">Precio del Pasaje</label>
+                <input type="number" class="form-control" name="precioPasaje" id="precioPasaje"
+                    [(ngModel)]="pasaje.precioPasaje" required step="any" min="0" (ngModelChange)="cambiarValor()">
+            </div>
+            <div class="my-3">
+                <label for="categoriaPasajero" class="form-label">Categoria de pasajero</label>
+                <select name="categoriaPasajero" id="categoriaPasajero" class="form-select"
+                    [(ngModel)]="pasaje.categoriaPasajero" required (ngModelChange)="cambiarValor()">
+                    <option value="m">Menor</option>
+                    <option value="a">Adulto</option>
+                    <option value="j">Jubilado</option>
+                </select>
+            </div>
+            <div class="my-3" *ngIf="checkPrecioYCategoria()">
+                <label for="precioPasaje" class="form-label fw-bold">Precio total del pasaje: {{ precioTotal }}</label>
+            </div>
+            <div class="input-group my-3">
+                <button type="button" class="btn btn-success ms-auto me-2" (click)="guardarPasaje()">Agregar</button>
+                <button type="button" class="btn btn-danger me-auto" (click)="limpiar()">Limpiar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Punto4Component } from './punto4.component';
+import { Punto3FormComponent } from './punto3-form.component';
 
-describe('Punto4Component', () => {
-  let component: Punto4Component;
-  let fixture: ComponentFixture<Punto4Component>;
+describe('Punto3FormComponent', () => {
+  let component: Punto3FormComponent;
+  let fixture: ComponentFixture<Punto3FormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Punto4Component ]
+      declarations: [ Punto3FormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Punto4Component);
+    fixture = TestBed.createComponent(Punto3FormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

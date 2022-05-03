@@ -1,1 +1,57 @@
-<p>punto3 works!</p>
+<app-header></app-header>
+<div class="container row mx-auto">
+    <div class="col-lg-8">
+        <app-punto3-form></app-punto3-form>
+        <div class="container my-5 text-center">
+            <h2 class="fst-italic mb-3">Lista de Pasajes Comprados</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>DNI Pasajero</th>
+                            <th>Categoria Pasajero</th>
+                            <th>Precio</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="!pasajes.length else listTemplate">
+                            <td colspan="6" class="fw-bold">NO HAY PASAJES CARGADOS</td>
+                        </tr>
+                        <ng-template #listTemplate>
+                            <tr *ngFor="let pasaje of pasajes">
+                                <td>{{pasaje.idPasaje}}</td>
+                                <td>{{pasaje.dniPasajero}}</td>
+                                <td>{{pasaje.categoriaPasajero | mostrarCategoria}}</td>
+                                <td>{{pasaje.precioPasaje | currency:'ARS'}}</td>
+                                <td>{{pasaje.fechaCompra | date:'dd/MM/yyyy'}}</td>
+                            </tr>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 my-5 text-center">
+        <h3>Resumen de ventas</h3>
+        <div class="my-3 table-responsive col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let categoria of resumirPasajes()">
+                        <td>{{categoria.categoria | mostrarCategoria}}</td>
+                        <td>{{categoria.cant}}</td>
+                        <td>{{categoria.total | currency:'ARS'}}</td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
