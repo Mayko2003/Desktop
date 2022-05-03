@@ -8,7 +8,7 @@ import { Punto3Component } from './components/punto3/punto3.component';
 const routes: Routes = [
   {path: 'punto1', component : Punto1Component},
   {path: 'punto2', component : Punto2Component},
-  {path: 'punto3', component : Punto3Component},
+  {path: 'punto3/:id', component : Punto3Component},
   {path: '**', component : HomeComponent},
 ];
 

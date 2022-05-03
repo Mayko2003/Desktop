@@ -36,7 +36,7 @@ export class PasajeService {
     this.pasajes.splice(id, 1)
   }
 
-  filtrarPorCategoria(categoria: string): {categoria: string, cant: number, total: number } {
+  filtrarPorCategoria(categoria: string): any {
     let cant = 0
     let total = 0
     this.pasajes.forEach(pasaje => {

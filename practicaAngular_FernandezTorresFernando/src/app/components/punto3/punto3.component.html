@@ -13,6 +13,7 @@
                             <th>Categoria Pasajero</th>
                             <th>Precio</th>
                             <th>Fecha</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,10 @@
                                 <td>{{pasaje.categoriaPasajero | mostrarCategoria}}</td>
                                 <td>{{pasaje.precioPasaje | currency:'ARS'}}</td>
                                 <td>{{pasaje.fechaCompra | date:'dd/MM/yyyy'}}</td>
+                                <td>
+                                    <button class="btn btn-primary me-2" [disabled]="desactivarPasaje(pasaje.idPasaje)" (click)="editarPasaje(pasaje)"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-danger" [disabled]="desactivarPasaje(pasaje.idPasaje)" (click)="eliminarPasaje(pasaje)"><i class="bi bi-eraser"></i></button>
+                                </td>
                             </tr>
                         </ng-template>
                     </tbody>

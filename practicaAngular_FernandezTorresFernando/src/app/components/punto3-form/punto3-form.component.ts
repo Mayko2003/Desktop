@@ -12,6 +12,7 @@ export class Punto3FormComponent implements OnInit {
 
   pasaje!: Pasaje
   precioTotal!: number
+  action: string = "new"
 
   constructor(private pasajeService: PasajeService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.pasaje = new Pasaje()
@@ -19,23 +20,42 @@ export class Punto3FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      if (params['id'] == -1) {
+        this.action = "new"
+      } else {
+        this.action = "edit"
+        this.pasaje = this.pasajeService.getPasaje(params['id'])
+        this.precioTotal = this.pasaje.precioPasaje
+      }
+    })
   }
+  public limpiarPasaje() {
+    this.pasaje = new Pasaje()
+  }
+
+  public cancelarForm(){
+    this.limpiarPasaje()
+    this.router.navigate(['/punto3', -1])
+  }
+  
 
   public guardarPasaje() {
     if (!this.pasaje.dniPasajero || this.pasaje.categoriaPasajero.length == 0 || !this.pasaje.precioPasaje)
       alert("Debe rellenar todos los campos")
     else {
-      this.pasaje.fechaCompra = new Date()
-      this.pasaje.precioPasaje = this.calcularPrecioTotal()
-      this.pasajeService.addPasaje(this.pasaje)
-      this.limpiar()
-      this.router.navigate(['/punto3'])
+      if(this.action == "new"){
+        this.pasaje.fechaCompra = new Date()
+        this.pasaje.precioPasaje = this.calcularPrecioTotal()
+        this.pasajeService.addPasaje(this.pasaje)
+      }else{
+        this.pasajeService.updatePasaje(this.pasaje)
+      }
+      this.cancelarForm()
     }
   }
 
-  public limpiar() {
-    this.pasaje = new Pasaje()
-  }
+  
 
   calcularPrecioTotal(): number {
     var porcentaje = 0

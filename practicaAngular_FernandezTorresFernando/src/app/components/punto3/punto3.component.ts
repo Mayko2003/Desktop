@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pasaje } from 'src/app/models/pasaje';
 import { PasajeService } from 'src/app/services/pasaje.service';
 
@@ -11,25 +11,29 @@ import { PasajeService } from 'src/app/services/pasaje.service';
 export class Punto3Component implements OnInit {
 
   pasajes!: Array<Pasaje>
-
-  constructor(private pasajeService: PasajeService, private router: Router) {
+  constructor(private pasajeService: PasajeService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.pasajes = new Array<Pasaje>()
     this.pasajes = this.pasajeService.getPasajes()
   }
 
-  agregarPasaje() {
-    this.router.navigate(['/punto3-form', -1])
-  }
 
   editarPasaje(pasaje: Pasaje) {
-    this.router.navigate(['/punto3-form', pasaje.idPasaje])
+    this.router.navigate(['/punto3', pasaje.idPasaje])
   }
 
   eliminarPasaje(pasaje: Pasaje) {
     this.pasajeService.deletePasaje(pasaje.idPasaje)
   }
 
-  resumirPasajes(): any{
+  desactivarPasaje(id: number): boolean {
+    var disabled = false
+    this.activatedRoute.params.subscribe(params => {
+      if (params['id'] == id) disabled = true
+      else disabled = false
+    })
+    return disabled
+  }
+  resumirPasajes(): any {
     var resumen = new Array<any>()
     resumen.push(this.pasajeService.filtrarPorCategoria("m"))
     resumen.push(this.pasajeService.filtrarPorCategoria("a"))
@@ -37,7 +41,9 @@ export class Punto3Component implements OnInit {
     return resumen
   }
 
+
   ngOnInit(): void {
+
   }
 
 }

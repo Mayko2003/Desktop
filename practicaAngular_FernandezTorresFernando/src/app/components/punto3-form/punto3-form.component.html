@@ -24,8 +24,10 @@
                 <label for="precioPasaje" class="form-label fw-bold">Precio total del pasaje: {{ precioTotal }}</label>
             </div>
             <div class="input-group my-3">
-                <button type="button" class="btn btn-success ms-auto me-2" (click)="guardarPasaje()">Agregar</button>
-                <button type="button" class="btn btn-danger me-auto" (click)="limpiar()">Limpiar</button>
+                <button type="button" class="btn btn-primary ms-auto me-2" *ngIf="action == 'edit'" (click)="guardarPasaje()">Modificar</button>
+                <button type="button" class="btn btn-success ms-auto me-2" *ngIf="action == 'new'" (click)="guardarPasaje()">Agregar</button>
+                <button type="button" class="btn btn-secondary me-auto" *ngIf="action == 'edit'" (click)="cancelarForm()">Cancelar</button>
+                <button type="button" class="btn btn-danger me-auto" *ngIf="action == 'new'" (click)="limpiarPasaje()">Limpiar</button>
             </div>
         </form>
     </div>
