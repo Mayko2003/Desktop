@@ -1,11 +1,13 @@
 <app-header></app-header>
 <div class="container row mx-auto">
     <div class="col-lg-8">
+        <!-- inyeccion del formulario -->
         <app-punto3-form></app-punto3-form>
         <div class="container my-5 text-center">
             <h2 class="fst-italic mb-3">Lista de Pasajes Comprados</h2>
             <div class="table-responsive">
-                <table class="table">
+                <!-- angular-datatable para la tabla -->
+                <table datatable class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -26,7 +28,7 @@
                                 <td>{{pasaje.dniPasajero}}</td>
                                 <td>{{pasaje.categoriaPasajero | mostrarCategoria}}</td>
                                 <td>{{pasaje.precioPasaje | currency:'ARS'}}</td>
-                                <td>{{pasaje.fechaCompra | date:'dd/MM/yyyy'}}</td>
+                                <td>{{pasaje.fechaCompra | date:'longDate':'GMT-3':'es-AR'}}</td>
                                 <td>
                                     <button class="btn btn-primary me-2" [disabled]="desactivarPasaje(pasaje.idPasaje)" (click)="editarPasaje(pasaje)"><i class="bi bi-pencil-square"></i></button>
                                     <button class="btn btn-danger" [disabled]="desactivarPasaje(pasaje.idPasaje)" (click)="eliminarPasaje(pasaje)"><i class="bi bi-eraser"></i></button>

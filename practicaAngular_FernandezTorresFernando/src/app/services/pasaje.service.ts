@@ -33,7 +33,11 @@ export class PasajeService {
   }
 
   deletePasaje(id: number): void {
-    this.pasajes.splice(id, 1)
+    this.pasajes.forEach((pasaje, index) => {
+      if (pasaje.idPasaje === id) {
+        this.pasajes.splice(index, 1)
+      }
+    })
   }
 
   filtrarPorCategoria(categoria: string): any {

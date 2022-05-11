@@ -11,6 +11,9 @@ import { PasajeService } from 'src/app/services/pasaje.service';
 export class Punto3Component implements OnInit {
 
   pasajes!: Array<Pasaje>
+
+  // constructor
+  // inyectamos el servicio, router y activatedRoute
   constructor(private pasajeService: PasajeService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.pasajes = new Array<Pasaje>()
     this.pasajes = this.pasajeService.getPasajes()
@@ -23,8 +26,13 @@ export class Punto3Component implements OnInit {
 
   eliminarPasaje(pasaje: Pasaje) {
     this.pasajeService.deletePasaje(pasaje.idPasaje)
+    //recarga la pagina asi se actualiza el datatable
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url])
   }
 
+  // desactiva las operaciones si el que se esta editando es el mismo que se esta operando
   desactivarPasaje(id: number): boolean {
     var disabled = false
     this.activatedRoute.params.subscribe(params => {
@@ -33,6 +41,7 @@ export class Punto3Component implements OnInit {
     })
     return disabled
   }
+
   resumirPasajes(): any {
     var resumen = new Array<any>()
     resumen.push(this.pasajeService.filtrarPorCategoria("m"))
@@ -43,7 +52,7 @@ export class Punto3Component implements OnInit {
 
 
   ngOnInit(): void {
-
+    
   }
 
 }

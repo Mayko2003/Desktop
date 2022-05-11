@@ -10,16 +10,21 @@ import { PasajeService } from 'src/app/services/pasaje.service';
 })
 export class Punto3FormComponent implements OnInit {
 
+  // variables
   pasaje!: Pasaje
   precioTotal!: number
   action: string = "new"
 
+  // constructor
+  // inyectamos el servicio, router y activatedRoute
   constructor(private pasajeService: PasajeService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.pasaje = new Pasaje()
     this.precioTotal = 0
   }
 
+  // iniciamos el componente
   ngOnInit(): void {
+    // obtenemos el parametro id que viene por la url y detectamos si es un nuevo o uno existente
     this.activatedRoute.params.subscribe(params => {
       if (params['id'] == -1) {
         this.action = "new"
@@ -30,32 +35,31 @@ export class Punto3FormComponent implements OnInit {
       }
     })
   }
+
+  // METODOS
+
   public limpiarPasaje() {
     this.pasaje = new Pasaje()
   }
 
-  public cancelarForm(){
+  public cancelarForm() {
     this.limpiarPasaje()
+    //reinicia la pagina asi se actualiza el datatable
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/punto3', -1])
   }
-  
 
   public guardarPasaje() {
-    if (!this.pasaje.dniPasajero || this.pasaje.categoriaPasajero.length == 0 || !this.pasaje.precioPasaje)
-      alert("Debe rellenar todos los campos")
-    else {
-      if(this.action == "new"){
-        this.pasaje.fechaCompra = new Date()
-        this.pasaje.precioPasaje = this.calcularPrecioTotal()
-        this.pasajeService.addPasaje(this.pasaje)
-      }else{
-        this.pasajeService.updatePasaje(this.pasaje)
-      }
-      this.cancelarForm()
+    if (this.action == "new") {
+      this.pasaje.fechaCompra = new Date()
+      this.pasaje.precioPasaje = this.calcularPrecioTotal()
+      this.pasajeService.addPasaje(this.pasaje)
+    } else {
+      this.pasajeService.updatePasaje(this.pasaje)
     }
+    this.cancelarForm()
   }
-
-  
 
   calcularPrecioTotal(): number {
     var porcentaje = 0
@@ -63,14 +67,10 @@ export class Punto3FormComponent implements OnInit {
     else if (this.pasaje.categoriaPasajero == "j") porcentaje = 0.5
     return this.pasaje.precioPasaje - (this.pasaje.precioPasaje * porcentaje)
   }
+
+  // metodo actualizar el precio total
   public cambiarValor() {
     this.precioTotal = this.calcularPrecioTotal()
   }
-
-  public checkPrecioYCategoria(): boolean {
-    if (this.pasaje.precioPasaje && this.pasaje.categoriaPasajero.length > 0) return true
-    return false;
-  }
-
 
 }

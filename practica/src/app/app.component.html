@@ -14,13 +14,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let usuario of usuarios">
+                <tr *ngFor="let usuario of usuarios | sortusername:orden | slice:pageActual:(pageActual+pageSize)">
                     <td>{{ usuario.id }}</td>
                     <td>{{ usuario.nombreUsuario }}</td>
                     <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.password }}</td>
-                    <td>{{ usuario.nombre + ', ' + usuario.apellido}}</td>
-                    <td>{{ usuario.fechaCreacion}}</td>
+                    <td>{{ usuario.password | hidepassword }}</td>
+                    <td>{{ usuario.nombre + ', ' + usuario.apellido | titlecase }}</td>
+                    <td>{{ usuario.fechaCreacion | date:'longDate':'GMT-3':'es-AR' }}</td>
                     <td>{{ usuario.estado?'Activo':'Inactivo' }}</td>
                 </tr>
             </tbody>

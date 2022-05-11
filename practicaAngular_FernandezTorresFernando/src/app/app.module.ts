@@ -12,6 +12,12 @@ import { HomeComponent } from './components/home/home.component';
 import { Punto3FormComponent } from './components/punto3-form/punto3-form.component';
 import { FormsModule } from '@angular/forms';
 import { MostrarCategoriaPipe } from './pipes/mostrar-categoria.pipe';
+import { DataTablesModule } from "angular-datatables";
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
+
+
+registerLocaleData(localeEsAr, 'es-AR');
 
 @NgModule({
   declarations: [
@@ -28,7 +34,8 @@ import { MostrarCategoriaPipe } from './pipes/mostrar-categoria.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

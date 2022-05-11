@@ -1,34 +1,71 @@
 <div class="container my-5">
     <div class="mx-auto col-6">
-        <form action="" method="post" id="formPasaje">
+        <form action="" method="post" id="formPasaje" #pasajeForm="ngForm">
+            <!-- DNI pasajero -->
             <div class="my-3">
                 <label for="dniPasajero" class="label-form">DNI Pasajero</label>
                 <input type="number" class="form-control" name="dniPasajero" id="dniPasajero"
-                    [(ngModel)]="pasaje.dniPasajero" required>
+                    [(ngModel)]="pasaje.dniPasajero" required min="0" #dniPasajero="ngModel">
+                <!-- Validaciones -->
+                <div *ngIf="dniPasajero.invalid" class="alert alert-danger my-1 p-1">
+                    <div *ngIf="dniPasajero.errors?.['required']">
+                        El DNI es obligatorio
+                    </div>
+                    <div *ngIf="dniPasajero.errors?.['min']">
+                        El DNI debe ser mayor a 0
+                    </div>
+                </div>
             </div>
+            <!-- precio pasaje -->
             <div class="my-3">
                 <label for="precioPasaje" class="label-form">Precio del Pasaje</label>
                 <input type="number" class="form-control" name="precioPasaje" id="precioPasaje"
-                    [(ngModel)]="pasaje.precioPasaje" required step="any" min="0" (ngModelChange)="cambiarValor()">
+                    [(ngModel)]="pasaje.precioPasaje" required step="any" min="0" (ngModelChange)="cambiarValor()"
+                    #precioPasaje="ngModel">
+                <!-- Validaciones -->
+                <div *ngIf="precioPasaje.invalid" class="alert alert-danger my-1 p-1">
+                    <div *ngIf="precioPasaje.errors?.['required']">
+                        El precio del pasaje es obligatorio
+                    </div>
+                    <div *ngIf="precioPasaje.errors?.['min']">
+                        El precio del pasaje debe ser mayor que 0
+                    </div>
+                </div>
             </div>
+            <!-- categoria de pasaje -->
             <div class="my-3">
                 <label for="categoriaPasajero" class="form-label">Categoria de pasajero</label>
                 <select name="categoriaPasajero" id="categoriaPasajero" class="form-select"
-                    [(ngModel)]="pasaje.categoriaPasajero" required (ngModelChange)="cambiarValor()">
+                    [(ngModel)]="pasaje.categoriaPasajero" required (ngModelChange)="cambiarValor()"
+                    #categoriaPasaje="ngModel">
                     <option value="m">Menor</option>
                     <option value="a">Adulto</option>
                     <option value="j">Jubilado</option>
                 </select>
+                <!-- Validaciones -->
+                <div *ngIf="categoriaPasaje.invalid" class="alert alert-danger my-1 p-1">
+                    <div *ngIf="categoriaPasaje.errors?.['required']">
+                        Seleccione una categoria
+                    </div>
+                </div>
             </div>
-            <div class="my-3" *ngIf="checkPrecioYCategoria()">
+            <!-- precio total -->
+            <div class="my-3" *ngIf="categoriaPasaje.valid && precioPasaje.valid">
                 <label for="precioPasaje" class="form-label fw-bold">Precio total del pasaje: {{ precioTotal }}</label>
             </div>
+
+            <!-- botones de operaciones -->
             <div class="input-group my-3">
-                <button type="button" class="btn btn-primary ms-auto me-2" *ngIf="action == 'edit'" (click)="guardarPasaje()">Modificar</button>
-                <button type="button" class="btn btn-success ms-auto me-2" *ngIf="action == 'new'" (click)="guardarPasaje()">Agregar</button>
-                <button type="button" class="btn btn-secondary me-auto" *ngIf="action == 'edit'" (click)="cancelarForm()">Cancelar</button>
-                <button type="button" class="btn btn-danger me-auto" *ngIf="action == 'new'" (click)="limpiarPasaje()">Limpiar</button>
+                <button type="button" class="btn btn-primary ms-auto me-2" *ngIf="action == 'edit'"
+                    [disabled]="pasajeForm.form.invalid" (click)="guardarPasaje()">Modificar</button>
+                <button type="button" class="btn btn-success ms-auto me-2" *ngIf="action == 'new'"
+                    [disabled]="pasajeForm.form.invalid" (click)="guardarPasaje()">Agregar</button>
+                <button type="button" class="btn btn-secondary me-auto" *ngIf="action == 'edit'"
+                    (click)="cancelarForm()">Cancelar</button>
+                <button type="button" class="btn btn-danger me-auto" *ngIf="action == 'new'"
+                    (click)="limpiarPasaje()">Limpiar</button>
             </div>
+
         </form>
     </div>
 </div>
