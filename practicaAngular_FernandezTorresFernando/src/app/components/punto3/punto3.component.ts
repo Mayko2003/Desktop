@@ -12,6 +12,27 @@ export class Punto3Component implements OnInit {
 
   pasajes!: Array<Pasaje>
 
+  //angular-datatable config
+  dtOptions: object = {
+    data: this.pasajes,
+    language: {
+      search:"Buscar",
+      zeroRecords: "No hay pasajes cargados",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ pasajes",
+      paginate:{
+        first : "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior"
+      },
+      lengthMenu: "Mostrar _MENU_ pasajes"
+    },
+    lenghtChange: true,
+    pageLength: 5,
+    lengthMenu: [5, 10, 15, 20, 25],
+    stateSave: true,
+  }
+
   // constructor
   // inyectamos el servicio, router y activatedRoute
   constructor(private pasajeService: PasajeService, private router: Router, private activatedRoute: ActivatedRoute) {

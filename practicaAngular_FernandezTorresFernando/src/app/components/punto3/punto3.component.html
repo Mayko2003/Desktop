@@ -7,7 +7,7 @@
             <h2 class="fst-italic mb-3">Lista de Pasajes Comprados</h2>
             <div class="table-responsive">
                 <!-- angular-datatable para la tabla -->
-                <table datatable class="table">
+                <table datatable [dtOptions]="dtOptions" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -19,22 +19,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngIf="!pasajes.length else listTemplate">
-                            <td colspan="6" class="fw-bold">NO HAY PASAJES CARGADOS</td>
+                        <tr *ngFor="let pasaje of pasajes">
+                            <td>{{pasaje.idPasaje}}</td>
+                            <td>{{pasaje.dniPasajero}}</td>
+                            <td>{{pasaje.categoriaPasajero | mostrarCategoria}}</td>
+                            <td>{{pasaje.precioPasaje | currency:'ARS'}}</td>
+                            <td>{{pasaje.fechaCompra | date:'longDate':'GMT-3':'es-AR'}}</td>
+                            <td>
+                                <button class="btn btn-primary me-2" [disabled]="desactivarPasaje(pasaje.idPasaje)"
+                                    (click)="editarPasaje(pasaje)"><i class="bi bi-pencil-square"></i></button>
+                                <button class="btn btn-danger" [disabled]="desactivarPasaje(pasaje.idPasaje)"
+                                    (click)="eliminarPasaje(pasaje)"><i class="bi bi-eraser"></i></button>
+                            </td>
                         </tr>
-                        <ng-template #listTemplate>
-                            <tr *ngFor="let pasaje of pasajes">
-                                <td>{{pasaje.idPasaje}}</td>
-                                <td>{{pasaje.dniPasajero}}</td>
-                                <td>{{pasaje.categoriaPasajero | mostrarCategoria}}</td>
-                                <td>{{pasaje.precioPasaje | currency:'ARS'}}</td>
-                                <td>{{pasaje.fechaCompra | date:'longDate':'GMT-3':'es-AR'}}</td>
-                                <td>
-                                    <button class="btn btn-primary me-2" [disabled]="desactivarPasaje(pasaje.idPasaje)" (click)="editarPasaje(pasaje)"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-danger" [disabled]="desactivarPasaje(pasaje.idPasaje)" (click)="eliminarPasaje(pasaje)"><i class="bi bi-eraser"></i></button>
-                                </td>
-                            </tr>
-                        </ng-template>
                     </tbody>
                 </table>
             </div>
