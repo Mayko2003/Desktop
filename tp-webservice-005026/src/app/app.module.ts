@@ -8,6 +8,8 @@ import { Page1Component } from './components/page1/page1.component';
 import { PageaComponent } from './components/pagea/pagea.component';
 import { PagebComponent } from './components/pageb/pageb.component';
 import { PagecComponent } from './components/pagec/pagec.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PagecComponent } from './components/pagec/pagec.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

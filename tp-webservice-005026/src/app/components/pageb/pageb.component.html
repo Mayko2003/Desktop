@@ -116,14 +116,19 @@
             <div class="text-center bg-info text-white">
                 <h3 class="p-1">Convertidor de divisas</h3>
             </div>
-            <form class="border border-3 p-3 bg-primary text-white" method="post">
+            <form class="border border-3 p-3 bg-primary text-white" method="post" #divisaForm="ngForm">
                 <div class="mb-3">
                     <label for="cantidad" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" min="0" required>
+                    <input type="number" class="form-control" id="cantidad" min="0" required #amount="ngModel">
+                    <div class="alert alert-danger my-1 p-1">
+                        <div *ngIf="amount.errors?.['required']">
+                            La cantidad es requerida
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="desde" class="form-label">De</label>
-                    <select class="form-select" id="desde" required>
+                    <select class="form-select" id="desde" required #have="ngModel">
                         <option value="usd" selected>USD Doláres EEUU</option>
                         <option value="eur">EUR Euros</option>
                         <option value="gbp">GBP Libras esterlinas</option>
@@ -136,7 +141,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="hacia" class="form-label">A</label>
-                    <select class="form-select" id="hacia" required>
+                    <select class="form-select" id="hacia" required #want="ngModel">
                         <option value="ars" selected>ARS Pesos argentinos</option>
                         <option value="usd">USD Doláres EEUU</option>
                         <option value="eur">EUR Euros</option>
@@ -147,8 +152,12 @@
                         <option value="btc">BTC Bitcoin</option>
                     </select>
                 </div>
+                <div class="mb-3" [hidden]="conversion == -1">
+                    <label for="conversion">Conversion: </label>
+                    <input type="text" class="form-control" id="conversion" disabled [value]="conversion">
+                </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-warning">Convertir</button>
+                    <button type="button" class="btn btn-warning" [disabled]="divisaForm.form.invalid" (click)="convertir(have,want,amount)">Convertir</button>
                 </div>
             </form>
         </div>

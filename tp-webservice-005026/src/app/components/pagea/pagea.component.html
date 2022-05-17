@@ -1,0 +1,28 @@
+<div class="container">
+  <app-header></app-header>
+
+  <!-- MAIN -->
+  <div class="container main row d-flex justify-content-center">
+    <!-- PELICULAS -->
+    <div class="container peliculas row col-12 col-sm-8 mt-3">
+      
+      <div class="card col-12 col-sm-6 col-md-4 my-2" *ngFor="let pelicula of peliculas">
+        <img [src]="pelicula.image" class="card-img-top portada-pelicula">
+        <div class="card-body">
+          <h5 class="card-title">{{pelicula.titulo}}</h5>
+          <p class="card-text text-secondary">Duracion: {{pelicula.duracion}}</p>
+          <p class="card-text text-secondary">Rating: {{pelicula.rating}}</p>
+          <p>
+            {{pelicula.descripcion}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PUBLICIDAD -->
+    <div class="container-fluid publicidad col-12 col-sm-4 mt-4">
+      <img class="img-fluid" src="assets/img/add.jpg" alt="">
+      <img class="img-fluid mt-3" src="assets/img/add2.jpg" alt="">
+    </div>
+  </div>
+</div>
