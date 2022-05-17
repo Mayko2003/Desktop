@@ -10,6 +10,7 @@ import { PagebComponent } from './components/pageb/pageb.component';
 import { PagecComponent } from './components/pagec/pagec.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PagedComponent } from './components/paged/paged.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     Page1Component,
     PageaComponent,
     PagebComponent,
-    PagecComponent
+    PagecComponent,
+    PagedComponent
   ],
   imports: [
     BrowserModule,

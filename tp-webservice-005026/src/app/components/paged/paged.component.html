@@ -1,0 +1,27 @@
+<div class="container">
+    <app-header></app-header>
+    <div class="row">
+        <div class="mx-auto col-6">
+            <form action="" method="post" #qrForm="ngForm">
+                <div class="my-3">
+                    <label for="url" class="form-label">URL</label>
+                    <input class="form-control" type="url" [(ngModel)]="urlInput" name="urlInput" id="urlInput"
+                        required #url="ngModel">
+                    <div *ngIf="url.invalid" class="alert alert-danger my-1 p-1">
+                        <div *ngIf="url.errors?.['required']">
+                            El campo URL es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" [disabled]="qrForm.form.invalid" (click)="generar()">Generar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center" [hidden]="!submited">
+        <div>
+            <div [innerHtml]="qrImg"></div>
+        </div>
+    </div>
+</div>
