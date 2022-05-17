@@ -2,40 +2,72 @@
     <app-header></app-header>
     <div class="container main row mt-5 ">
         <!-- Formulario de traduccion -->
-        <form method="post">
+        <form method="post" #translateForm="ngForm">
             <div class="mb-3 row">
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="ingles"><img
-                        src="assets/icon/english.ico" class="w-25 h-75 me-1">Ingles</button>
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="frances"><img
-                        src="assets/icon/french.ico" class="w-25 h-75 me-1">Frances</button>
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="español"><img src="assets/icon/spain.ico"
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.sourceLang = 'en'"
+                    [class]="translate.sourceLang == 'en'? 'active':''"><img src="assets/icon/english.ico"
+                        class="w-25 h-75 me-1">Ingles</button>
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.sourceLang = 'fr'"
+                    [class]="translate.sourceLang == 'fr'? 'active':''"><img src="assets/icon/french.ico"
+                        class="w-25 h-75 me-1">Frances</button>
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.sourceLang = 'es'"
+                    [class]="translate.sourceLang == 'es'? 'active':''"><img src="assets/icon/spain.ico"
                         class="w-25 h-75 me-1">Español</button>
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="italiano"><img
-                        src="assets/icon/italian.ico" class="w-25 h-75 me-1">Italiano</button>
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.sourceLang = 'it'"
+                    [class]="translate.sourceLang == 'it'? 'active':''"><img src="assets/icon/italian.ico"
+                        class="w-25 h-75 me-1">Italiano</button>
+
+                <div *ngIf="!translate.sourceLang.length" class="alert alert-danger p-1 my-1">
+                    <div>
+                        <strong>Error!</strong> Seleccione un idioma de origen.
+                    </div>
+                </div>
             </div>
             <div class="mb-3 row">
-                <textarea class="form-control" id="text" rows="7" placeholder="Ingrese texto a traducir..."
-                    maxlength="512" required></textarea>
+                <textarea class="form-control" name="txtTraducir" id="txtTraducir" rows="7"
+                    placeholder="Ingrese texto a traducir..." maxlength="512" required
+                    [(ngModel)]="translate.txtTraducir" #txtTraducir="ngModel"></textarea>
+
+                <div *ngIf="txtTraducir.invalid" class="alert alert-danger p-1 my-1">
+                    <div *ngIf="txtTraducir.errors?.['required']">
+                        <strong>Error!</strong> El texto a traducir es requerido.
+                    </div>
+                    <div *ngIf="txtTraducir.errors?.['maxlength']">
+                        <strong>Error!</strong> El texto a traducir no puede superar los 512 caracteres.
+                    </div>
+                </div>
             </div>
             <div class="mb-3 row">
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="ingles"><img
-                        src="assets/icon/english.ico" class="w-25 h-75 me-1">Ingles</button>
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="frances"><img
-                        src="assets/icon/french.ico" class="w-25 h-75 me-1">Frances</button>
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="español"><img src="assets/icon/spain.ico"
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.targetLang = 'en'"
+                    [class]="translate.targetLang == 'en'? 'active':''"><img src="assets/icon/english.ico"
+                        class="w-25 h-75 me-1">Ingles</button>
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.targetLang = 'fr'"
+                    [class]="translate.targetLang == 'fr'? 'active':''"><img src="assets/icon/french.ico"
+                        class="w-25 h-75 me-1">Frances</button>
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.targetLang = 'es'"
+                    [class]="translate.targetLang == 'es'? 'active':''"><img src="assets/icon/spain.ico"
                         class="w-25 h-75 me-1">Español</button>
-                <button type="button" class="btn btn-primary col-6 col-md-3" value="italiano"><img
-                        src="assets/icon/italian.ico" class="w-25 h-75 me-1">Italiano</button>
+                <button type="button" class="btn btn-primary col-6 col-md-3" (click)="translate.targetLang = 'it'"
+                    [class]="translate.targetLang == 'it'? 'active':''"><img src="assets/icon/italian.ico"
+                        class="w-25 h-75 me-1">Italiano</button>
+
+                <div *ngIf="!translate.targetLang.length" class="alert alert-danger p-1 my-1">
+                    <div>
+                        <strong>Error!</strong> Seleccione un idioma de destino.
+                    </div>
+                </div>
             </div>
             <div class="mb-3 row">
-                <button type="submit" class="btn btn-primary col-12">TRADUCIR</button>
+                <button type="button"
+                    [disabled]="translateForm.form.invalid || !translate.sourceLang.length || !translate.targetLang.length"
+                    class="btn btn-primary col-12" (click)="traducir()">TRADUCIR</button>
             </div>
         </form>
         <!-- Resultado de traduccion -->
         <div style="width: 100%;">
             <div class="mb-3 row">
-                <textarea class="form-control w-100" name="traduccion" id="traduccion" rows="7"
-                    maxlength="512"></textarea>
+                <textarea [value]="translate.txtTraducido.length? translate.txtTraducido.length:''"
+                    class="form-control w-100" name="traduccion" id="traduccion" rows="7" maxlength="512"></textarea>
             </div>
             <div class="mb-3 row">
                 <img src="assets/icon/copy.svg" class="btn col-4 icono-traduccion">

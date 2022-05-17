@@ -118,46 +118,62 @@
             </div>
             <form class="border border-3 p-3 bg-primary text-white" method="post" #divisaForm="ngForm">
                 <div class="mb-3">
-                    <label for="cantidad" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" min="0" required #amount="ngModel">
-                    <div class="alert alert-danger my-1 p-1">
+                    <label for="amout" class="form-label">Cantidad</label>
+                    <input [(ngModel)]="divisa.amount" type="number" class="form-control" name="amount" id="amount"
+                        min="0" required #amount="ngModel">
+                    <div *ngIf="amount.invalid" class="alert alert-danger my-1 p-1">
                         <div *ngIf="amount.errors?.['required']">
                             La cantidad es requerida
+                        </div>
+                        <div *ngIf="amount.errors?.['min']">
+                            La cantidad tiene que ser mayor a 0
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="desde" class="form-label">De</label>
-                    <select class="form-select" id="desde" required #have="ngModel">
-                        <option value="usd" selected>USD Doláres EEUU</option>
-                        <option value="eur">EUR Euros</option>
-                        <option value="gbp">GBP Libras esterlinas</option>
-                        <option value="jpy">JPY Yenes</option>
-                        <option value="cny">CNY Renminbi</option>
-                        <option value="aud">AUD Doláres autralianos</option>
-                        <option value="btc">BTC Bitcoin</option>
-                        <option value="ars">ARS Pesos argentinos</option>
+                    <label for="have" class="form-label">De</label>
+                    <select [(ngModel)]="divisa.have" class="form-select" name="have" id="have" required
+                        #have="ngModel">
+                        <option value="USD">USD Doláres EEUU</option>
+                        <option value="EUR">EUR Euros</option>
+                        <option value="GBP">GBP Libras esterlinas</option>
+                        <option value="JPY">JPY Yenes</option>
+                        <option value="CNY">CNY Renminbi</option>
+                        <option value="AUD">AUD Doláres autralianos</option>
+                        <option value="BTC">BTC Bitcoin</option>
+                        <option value="ARS">ARS Pesos argentinos</option>
                     </select>
+                    <div *ngIf="have.invalid" class="alert alert-danger my-1 p-1">
+                        <div *ngIf="have.errors?.['required']">
+                            La divisa de origen es requerida
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="hacia" class="form-label">A</label>
-                    <select class="form-select" id="hacia" required #want="ngModel">
-                        <option value="ars" selected>ARS Pesos argentinos</option>
-                        <option value="usd">USD Doláres EEUU</option>
-                        <option value="eur">EUR Euros</option>
-                        <option value="gbp">GBP Libras esterlinas</option>
-                        <option value="jpy">JPY Yenes</option>
-                        <option value="cny">CNY Renminbi</option>
-                        <option value="aud">AUD Doláres autralianos</option>
-                        <option value="btc">BTC Bitcoin</option>
+                    <label for="want" class="form-label">A</label>
+                    <select [(ngModel)]="divisa.want" name="want" class="form-select" id="want" required
+                        #want="ngModel">
+                        <option value="ARS">ARS Pesos argentinos</option>
+                        <option value="USD">USD Doláres EEUU</option>
+                        <option value="EUR">EUR Euros</option>
+                        <option value="GBP">GBP Libras esterlinas</option>
+                        <option value="JPY">JPY Yenes</option>
+                        <option value="CNY">CNY Renminbi</option>
+                        <option value="AUD">AUD Doláres autralianos</option>
+                        <option value="BTC">BTC Bitcoin</option>
                     </select>
+                    <div *ngIf="want.invalid" class="alert alert-danger my-1 p-1">
+                        <div *ngIf="want.errors?.['required']">
+                            La divisa de destino es requerida
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3" [hidden]="conversion == -1">
-                    <label for="conversion">Conversion: </label>
-                    <input type="text" class="form-control" id="conversion" disabled [value]="conversion">
+                <div class="mb-3" *ngIf="submited">
+                    <label class="form-label">Conversion: {{divisa.conversion}}</label>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-warning" [disabled]="divisaForm.form.invalid" (click)="convertir(have,want,amount)">Convertir</button>
+                    <button type="button" class="btn btn-warning" [disabled]="divisaForm.form.invalid"
+                        (click)="convertir(divisa.have,divisa.want,divisa.amount)">Convertir</button>
                 </div>
             </form>
         </div>

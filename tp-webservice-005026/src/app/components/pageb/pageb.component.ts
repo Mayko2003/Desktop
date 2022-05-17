@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Divisa } from 'src/app/models/divisa';
 import { CurrencyConverterService } from 'src/app/services/currency-converter.service';
 
 @Component({
@@ -8,20 +9,25 @@ import { CurrencyConverterService } from 'src/app/services/currency-converter.se
 })
 export class PagebComponent implements OnInit {
 
-  conversion:number = -1
-
-  constructor(private currencyConverter:CurrencyConverterService) { }
+  divisa!:Divisa
+  submited = false
+  constructor(private currencyConverterService:CurrencyConverterService) { 
+    this.divisa = new Divisa()
+  }
 
   ngOnInit(): void {
   }
 
-  convertir(have:string,want:string,amount:number): string {
-    this.currencyConverter.convertir(have,want,amount).subscribe(
+  convertir(have:string,want:string,amount:number) {
+    this.currencyConverterService.convertir(have,want,amount).subscribe(
       (data:any) => {
-        this.conversion = data.new_amount
+        this.divisa.amount = amount
+        this.divisa.have = have
+        this.divisa.want = want
+        this.divisa.conversion = data.new_amount
+        this.submited = true
       }
     )
-    return "";
   }
 
 }
