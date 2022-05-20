@@ -8,44 +8,20 @@
                 <thead>
                     <tr>
                         <th colspan="2"></th>
-                        <th scope="col">
+                        <th scope="col" *ngFor="let th of divisaHeaders">
                             <div class="text-center">
-                                <img src="assets/icon/usd.ico" class="icono-moneda"><br>
-                                <p>USD</p>
-                            </div>
-                        </th>
-                        <th scope="col">
-                            <div class="text-center">
-                                <img src="assets/icon/eur.ico" class="icono-moneda"><br>
-                                <p>EUR</p>
-                            </div>
-                        </th>
-                        <th scope="col">
-                            <div class="text-center">
-                                <img src="assets/icon/gbp.ico" class="icono-moneda"><br>
-                                <p>GBP</p>
-                            </div>
-                        </th>
-                        <th scope="col">
-                            <div class="text-center">
-                                <img src="assets/icon/jpy.ico" class="icono-moneda"><br>
-                                <p>JPY</p>
-                            </div>
-                        </th>
-                        <th scope="col">
-                            <div class="text-center">
-                                <img src="assets/icon/ars.ico" class="icono-moneda"><br>
-                                <p>ARS</p>
+                                <img src="assets/icon/{{th.icon}}" class="icono-moneda"><br>
+                                <p>{{th.code}}</p>
                             </div>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th><img src="assets/icon/usd.ico" class="icono-moneda"></th>
+                    <tr *ngFor="let tr of divisaHeaders">
+                        <th><img src="assets/icon/{{tr.icon}}" class="icono-moneda"></th>
                         <th scope="row">
                             <div class="text-center text">
-                                1 USD<br>inverse
+                                1 {{tr.code}}<br>inverse
                             </div>
                         </th>
                         <td>1.0000<br>1.0000</td>
@@ -54,60 +30,6 @@
                         <td>125.52<br>0.0080</td>
                         <td>112.71<br>0.0089</td>
                     </tr>
-                    <tr>
-                        <th><img src="assets/icon/eur.ico" class="icono-moneda"></th>
-                        <th scope="row">
-                            <div class="text-center">
-                                1 EUR<br>inverse
-                            </div>
-                        </th>
-                        <td>1.0800<br>0.9200</td>
-                        <td>1.0000<br>1.0000</td>
-                        <td>0.8300<br>1.2000</td>
-                        <td>136.03<br>0.0074</td>
-                        <td>122,09<br>0,0082</td>
-
-                    </tr>
-                    <tr>
-                        <th><img src="assets/icon/gbp.ico" class="icono-moneda"></th>
-                        <th scope="row">
-                            <div class="text-center">
-                                1 GBP<br>inverse
-                            </div>
-                        </th>
-                        <td>1.3000<br>0.7700</td>
-                        <td>1.2000<br>0.8300</td>
-                        <td>1.0000<br>1.0000</td>
-                        <td>163.32<br>0.0061</td>
-                        <td>146,60<br>0.0068</td>
-                    </tr>
-                    <tr>
-                        <th><img src="assets/icon/jpy.ico" class="icono-moneda"></th>
-                        <th scope="row">
-                            <div class="text-center">
-                                1 JPY<br>inverse
-                            </div>
-                        </th>
-                        <td>0.0080<br>125.52</td>
-                        <td>0.0074<br>136.03</td>
-                        <td>0.0061<br>163.32</td>
-                        <td>1.0000<br>1.0000</td>
-                        <td>0.9000<br>1.1100</td>
-                    </tr>
-                    <tr>
-                        <th><img src="assets/icon/ars.ico" class="icono-moneda"></th>
-                        <th scope="row">
-                            <div class="text-center">
-                                1 ARS<br>inverse
-                            </div>
-                        </th>
-                        <td>0.0089<br>112.71</td>
-                        <td>0,0082<br>122,09</td>
-                        <td>0.0068<br>146,60</td>
-                        <td>1.1100<br>0.9000</td>
-                        <td>1.0000<br>1.0000</td>
-                    </tr>
-                </tbody>
             </table>
         </div>
 
@@ -134,14 +56,7 @@
                     <label for="have" class="form-label">De</label>
                     <select [(ngModel)]="divisa.have" class="form-select" name="have" id="have" required
                         #have="ngModel">
-                        <option value="USD">USD Doláres EEUU</option>
-                        <option value="EUR">EUR Euros</option>
-                        <option value="GBP">GBP Libras esterlinas</option>
-                        <option value="JPY">JPY Yenes</option>
-                        <option value="CNY">CNY Renminbi</option>
-                        <option value="AUD">AUD Doláres autralianos</option>
-                        <option value="BTC">BTC Bitcoin</option>
-                        <option value="ARS">ARS Pesos argentinos</option>
+                        <option [value]="option" *ngFor="let option of divisaCodes">{{option}}</option>
                     </select>
                     <div *ngIf="have.invalid" class="alert alert-danger my-1 p-1">
                         <div *ngIf="have.errors?.['required']">
@@ -153,14 +68,7 @@
                     <label for="want" class="form-label">A</label>
                     <select [(ngModel)]="divisa.want" name="want" class="form-select" id="want" required
                         #want="ngModel">
-                        <option value="ARS">ARS Pesos argentinos</option>
-                        <option value="USD">USD Doláres EEUU</option>
-                        <option value="EUR">EUR Euros</option>
-                        <option value="GBP">GBP Libras esterlinas</option>
-                        <option value="JPY">JPY Yenes</option>
-                        <option value="CNY">CNY Renminbi</option>
-                        <option value="AUD">AUD Doláres autralianos</option>
-                        <option value="BTC">BTC Bitcoin</option>
+                        <option [value]="option" *ngFor="let option of divisaCodes">{{option}}</option>
                     </select>
                     <div *ngIf="want.invalid" class="alert alert-danger my-1 p-1">
                         <div *ngIf="want.errors?.['required']">

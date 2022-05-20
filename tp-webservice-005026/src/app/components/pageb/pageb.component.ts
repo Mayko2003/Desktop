@@ -11,6 +11,19 @@ export class PagebComponent implements OnInit {
 
   divisa!:Divisa
   submited = false
+
+  divisaCodes = [
+    "USD","EUR","GBP","JPY","ARS"
+  ]
+
+  divisaHeaders = [
+    {code: "USD", icon: "usd.ico"},
+    {code: "EUR", icon: "eur.ico"},
+    {code: "GBP", icon: "gbp.ico"},
+    {code: "JPY", icon: "jpy.ico"},
+    {code: "ARS", icon: "ars.ico"},
+  ]
+
   constructor(private currencyConverterService:CurrencyConverterService) { 
     this.divisa = new Divisa()
   }
