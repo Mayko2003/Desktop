@@ -9,31 +9,39 @@ import { CurrencyConverterService } from 'src/app/services/currency-converter.se
 })
 export class PagebComponent implements OnInit {
 
-  divisa!:Divisa
+  divisa!: Divisa
   submited = false
 
   divisaCodes = [
-    "USD","EUR","GBP","JPY","ARS"
+    "usd", "eur", "gbp", "jpy", "ars"
+  ]
+  content: any[] = [
+    { code: "usd", amounts:[] },
+    { code: "eur", amounts:[] },
+    { code: "gbp", amounts:[] },
+    { code: "jpy", amounts:[] },
+    { code: "ars", amounts:[] }
   ]
 
-  divisaHeaders = [
-    {code: "USD", icon: "usd.ico"},
-    {code: "EUR", icon: "eur.ico"},
-    {code: "GBP", icon: "gbp.ico"},
-    {code: "JPY", icon: "jpy.ico"},
-    {code: "ARS", icon: "ars.ico"},
-  ]
-
-  constructor(private currencyConverterService:CurrencyConverterService) { 
+  constructor(private currencyConverterService: CurrencyConverterService) {
     this.divisa = new Divisa()
+
+    for (let i = 0; i < this.divisaCodes.length; i++) {
+      for (let j = 0; j < this.divisaCodes.length; j++) {
+
+        //divisas convertidas
+        this.currencyConverterService.convertir(this.divisaCodes[i], this.divisaCodes[j], 1).subscribe(
+          data => this.content[i].amounts.push(data.new_amount))
+      }
+    }
   }
 
   ngOnInit(): void {
   }
 
-  convertir(have:string,want:string,amount:number) {
-    this.currencyConverterService.convertir(have,want,amount).subscribe(
-      (data:any) => {
+  convertir(have: string, want: string, amount: number) {
+    this.currencyConverterService.convertir(have, want, amount).subscribe(
+      (data: any) => {
         this.divisa.amount = amount
         this.divisa.have = have
         this.divisa.want = want

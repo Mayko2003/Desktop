@@ -8,27 +8,23 @@
                 <thead>
                     <tr>
                         <th colspan="2"></th>
-                        <th scope="col" *ngFor="let th of divisaHeaders">
+                        <th scope="col" *ngFor="let code of divisaCodes">
                             <div class="text-center">
-                                <img src="assets/icon/{{th.icon}}" class="icono-moneda"><br>
-                                <p>{{th.code}}</p>
+                                <img src="assets/icon/{{code}}.ico" class="icono-moneda"><br>
+                                <p>{{code | uppercase }} </p>
                             </div>
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let tr of divisaHeaders">
-                        <th><img src="assets/icon/{{tr.icon}}" class="icono-moneda"></th>
+                <tbody class="text-center">
+                    <tr *ngFor="let tr of content">
+                        <th><img src="assets/icon/{{tr.code}}.ico" class="icono-moneda"></th>
                         <th scope="row">
                             <div class="text-center text">
-                                1 {{tr.code}}<br>inverse
+                                1 {{tr.code | uppercase}}
                             </div>
                         </th>
-                        <td>1.0000<br>1.0000</td>
-                        <td>0.9200<br>1.0800</td>
-                        <td>0.7700<br>1.3000</td>
-                        <td>125.52<br>0.0080</td>
-                        <td>112.71<br>0.0089</td>
+                        <td *ngFor="let i of tr.amounts">{{i | number:'1.2-3' }}</td>
                     </tr>
             </table>
         </div>

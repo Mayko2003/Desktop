@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class CurrencyConverterService {
       },
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': environment.apiKeyRapidApi,
+        'X-RapidAPI-Key': 'd6ba5d39a4msh29c7b0fb1fd1f99p19e701jsn3e67b484b7d4',
         'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com',
       })
     }
