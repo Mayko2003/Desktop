@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="col-8 mx-auto">
+        <h1 class="text-center">FORMULARIO LIBROS</h1>
+        <form action="">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del libro</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="nombre">
+            </div>
+            <div class="mb-3 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" (click)="search(nombre)">Buscar</button>
+            </div>
+        </form>
+        <div [hidden]="!submited">
+            <div class="table-responsive">
+                <table class="table table-info">
+                    <thead>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Tapa</th>
+                        <th>Autores</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let libro of books">
+                            <td>{{libro.id}}</td>
+                            <td>{{libro.title}}</td>
+                            <td><img src="{{libro.img}}"></td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let autor of libro.autores">{{autor}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
