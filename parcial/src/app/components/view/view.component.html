@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="col-10 mx-auto">
+        <h1 class="text-center">{{book.title}}</h1>
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <img src="{{book.img}}" alt="">
+            </div>
+            <div>
+                <p>Rating: {{book.rating}}</p>
+                <p>Fecha: {{book.published_date}}</p>
+                <p>Paginas: {{book.pages}}</p>
+                <h4>Sinopsis</h4>
+                <p>{{book.synopsis}}</p>
+                <h4>Autores</h4>
+                <ul>
+                    <li *ngFor="let autor of book.autores">{{autor}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

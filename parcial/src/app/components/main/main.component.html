@@ -21,7 +21,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let libro of books">
-                            <td>{{libro.id}}</td>
+                            <td (click)="goTo(libro.id)">{{libro.id}}</td>
                             <td>{{libro.title}}</td>
                             <td><img src="{{libro.img}}"></td>
                             <td>

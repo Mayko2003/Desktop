@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './components/main/main.component';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    ViewComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/models/book';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -13,7 +14,7 @@ export class MainComponent implements OnInit {
   nombre:string = "";
   books: Book[] = [];
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:ApiService, private router:Router) { }
 
 
   search(text:string){
@@ -32,6 +33,9 @@ export class MainComponent implements OnInit {
     this.submited = true
   }
 
+  goTo(id:number){
+    this.router.navigate(['/view', id])
+  }
 
   ngOnInit(): void {
   }
