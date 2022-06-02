@@ -35,7 +35,8 @@ LibroController.getLibros = async (req, res) => {
 
 LibroController.deleteLibro = async (req, res) => {
     try {
-        await Libro.findByIdAndDelete(req.query.id)
+        const id = req.params.id
+        await Libro.findByIdAndDelete(id)
         res.json({
             status: 1,
             message: "Libro eliminado correctamente"
@@ -52,7 +53,8 @@ LibroController.deleteLibro = async (req, res) => {
 LibroController.updateLibro = async (req, res) => {
     var libro = new Libro(req.body)
     try{
-        var id = req.body._id
+        var id = req.params.id
+        libro._id = id
         await Libro.updateOne({_id: id}, libro)
         res.status(400).json({
             status: 1,
@@ -69,7 +71,7 @@ LibroController.updateLibro = async (req, res) => {
 
 LibroController.filterByDestacados = async (req, res) => {
     try{
-        const librosDestacados = (await Libro.find()).filter(libro => libro.destacado)
+        const librosDestacados = await Libro.find({destacado: {$eq: true}})
         res.status(400).json({
             librosDestacados
         })
