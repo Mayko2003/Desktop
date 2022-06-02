@@ -14,6 +14,8 @@ app.use(express.urlencoded(
 //cargamos los modulos de rutas
 app.use('/libros', require("./routes/libro.route"))
 app.use('/transacciones', require('./routes/transaccion.route'))
+app.use('/personas', require('./routes/persona.route'))
+app.use('/pasajes', require('./routes/pasaje.route'))
 
 //configuraciones
 app.set("port", process.env.PORT || 3000)
