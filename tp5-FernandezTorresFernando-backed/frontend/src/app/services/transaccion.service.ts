@@ -25,12 +25,15 @@ export class TransaccionService {
   filtrarTransacciones(origen: string, destino: string):Observable<any> {
     const options = {
       method: 'GET',
+      params: {
+        "origen": origen,
+        "destino": destino
+      },
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     }
-    const urlQuery = '/filter?origen=' + origen + '&destino=' + destino
-    return this.http.get(this.baseURL + urlQuery, options)
+    return this.http.get(this.baseURL + '/filter', options)
   }
 
   createTransaccion(transaccion: Transaccion):Observable<any> {
