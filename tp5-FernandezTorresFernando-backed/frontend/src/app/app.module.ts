@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LibroFormComponent } from './components/libro-form/libro-form.component';
-
+import { DivisaFormComponent } from './components/divisa-form/divisa-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { LibroFormComponent } from './components/libro-form/libro-form.component
     PasajeComponent,
     HomeComponent,
     HeaderComponent,
-    LibroFormComponent
+    LibroFormComponent,
+    DivisaFormComponent
   ],
   imports: [
     BrowserModule,

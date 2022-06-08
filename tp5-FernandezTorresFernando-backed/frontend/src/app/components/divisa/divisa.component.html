@@ -1,1 +1,46 @@
-<p>divisa works!</p>
+<div class="container">
+    <app-header></app-header>
+
+    <!-- main -->
+    <div class="container col-10 mx-auto my-5">
+        <div class="d-flex mb-3">
+            <form action="" method="POST" class="d-flex" #filtrarForm="ngForm">
+                <select [(ngModel)]="origen" name="origen" id="origen" class="form-select me-2">
+                    <option *ngFor="let money of divisaCodes" [value]="money">{{money}}</option>
+                </select>
+                <select [(ngModel)]="destino" name="destino" id="destino" class="form-select me-2">
+                    <option *ngFor="let money of divisaCodes" [value]="money">{{money}}</option>
+                </select>
+                <button type="button" class="btn btn-primary" [disabled]="!origen.length || !destino.length"
+                    (click)="filtrar()">Filtrar</button>
+            </form>
+            <button type="button" class="btn btn-primary ms-auto" (click)="limpiar()">Limpiar</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-info">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cantidad Origen</th>
+                        <th>Tasa Conversion</th>
+                        <th>Cantidad Destino</th>
+                        <th>Moneda Origen</th>
+                        <th>Moneda Destino</th>
+                        <th>Email Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tra of transacciones">
+                        <td>{{tra.id}}</td>
+                        <td>{{tra.cantidadOrigen | currency}}</td>
+                        <td>{{tra.tasaConversion | currency}}</td>
+                        <td>{{tra.cantidadDestino | currency}}</td>
+                        <td>{{tra.monedaOrigen | uppercase}}</td>
+                        <td>{{tra.monedaDestino | uppercase}}</td>
+                        <td>{{tra.emailCliente}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

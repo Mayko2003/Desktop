@@ -6,7 +6,7 @@ const TransaccionSchema = new Schema({
     monedaDestino: {type: String, required: true},
     cantidadOrigen: {type: Number, required: true},
     cantidadDestino: {type: Number, required: true},
-    emilCliente: {type: String, required: true},
+    emailCliente: {type: String, required: true},
     tasaConversion: {type: Number, required: true},
 })
 
