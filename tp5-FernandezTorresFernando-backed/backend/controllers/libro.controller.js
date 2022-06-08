@@ -7,7 +7,7 @@ LibroController.createLibro = async (req, res) => {
     console.log(req.body)
     try {
         await nuevo.save()
-        res.json({
+        res.status(200).json({
             status: 1,
             message: "Libro creado correctamente"
         })
@@ -23,7 +23,7 @@ LibroController.createLibro = async (req, res) => {
 LibroController.getLibros = async (req, res) => {
     try {
         const libros = await Libro.find()
-        res.json(libros)
+        res.status(200).json(libros)
     } catch (error) {
         console.log(error)
         res.status(400).json({
@@ -37,7 +37,7 @@ LibroController.deleteLibro = async (req, res) => {
     try {
         const id = req.params.id
         await Libro.findByIdAndDelete(id)
-        res.json({
+        res.status(200).json({
             status: 1,
             message: "Libro eliminado correctamente"
         })
@@ -56,7 +56,7 @@ LibroController.updateLibro = async (req, res) => {
         var id = req.params.id
         libro._id = id
         await Libro.updateOne({_id: id}, libro)
-        res.status(400).json({
+        res.status(200).json({
             status: 1,
             msg: "Libro actualizado correctamente"
         })
@@ -72,9 +72,7 @@ LibroController.updateLibro = async (req, res) => {
 LibroController.filterByDestacados = async (req, res) => {
     try{
         const librosDestacados = await Libro.find({destacado: {$eq: true}})
-        res.status(400).json({
-            librosDestacados
-        })
+        res.status(200).json(librosDestacados)
     }catch(error){
         console.log(error)
         res.status(400).json({

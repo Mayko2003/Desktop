@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LibroFormComponent } from './components/libro-form/libro-form.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HeaderComponent } from './components/header/header.component';
     DivisaComponent,
     PasajeComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    LibroFormComponent
   ],
   imports: [
     BrowserModule,
