@@ -8,6 +8,7 @@ import { DivisaComponent } from './components/divisa/divisa.component';
 import { PasajeComponent } from './components/pasaje/pasaje.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     LibroComponent,
     DivisaComponent,
-    PasajeComponent
+    PasajeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
