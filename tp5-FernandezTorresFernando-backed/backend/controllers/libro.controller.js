@@ -4,8 +4,8 @@ const LibroController = {}
 
 LibroController.createLibro = async (req, res) => {
     var nuevo = new Libro(req.body)
+    console.log(req.body)
     try {
-        console.log(nuevo._id)
         await nuevo.save()
         res.json({
             status: 1,

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const dbURI = "mongodb://localhost/tp5"
+const dbURI = "mongodb://localhost:27017/tp5"
 
 mongoose.connect(dbURI)
 .then(db => {console.log("Conectado a la base de datos")})

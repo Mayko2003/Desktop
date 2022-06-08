@@ -5,9 +5,14 @@ const {mongoose} = require("./db")
 var app = express()
 
 //middlewares
-app.use(cors({origin: "http://localhost:4200"}))
-app.use(express.json())
-app.use(express.urlencoded(
+
+//cors policy
+app.use(cors({origin: "http://localhost:4200"})) //only allow localhost:4200
+// decode JSON data
+app.use(express.json()) 
+
+//decode Form Url Encoded data
+app.use(express.urlencoded( 
     {extended: false}
 ));
 
