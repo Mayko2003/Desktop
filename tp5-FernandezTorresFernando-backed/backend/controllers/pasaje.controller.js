@@ -16,7 +16,7 @@ PasajeController.createPasaje = async (req, res) => {
         pasaje.pasajero = persona._id
 
         await pasaje.save()
-        res.json({
+        res.status(200).json({
             status: 1,
             message: "Pasaje creado correctamente",
         })
@@ -32,7 +32,7 @@ PasajeController.createPasaje = async (req, res) => {
 PasajeController.getPasajes = async (req, res) => {
     try {
         const pasajes = await Pasaje.find().populate("pasajero")
-        res.json(pasajes)
+        res.status(200).json(pasajes)
     } catch (error) {
         console.log(error)
         res.status(400).json({
@@ -46,7 +46,7 @@ PasajeController.deletePasaje = async (req, res) => {
     try {
         const pasaje = await Pasaje.findById(req.params.id)
         await Pasaje.findByIdAndDelete(pasaje._id)
-        res.json({
+        res.status(200).json({
             status: 1,
             msg: "Pasaje eliminado correctamente"
         })
@@ -75,7 +75,7 @@ PasajeController.updatePasaje = async (req, res) => {
         pasaje._id = req.params.id
 
         await Pasaje.updateOne({ _id: pasaje._id }, pasaje)
-        res.json({
+        res.status(200).json({
             status: 1,
             message: "Pasaje actualizado correctamente",
         })
@@ -94,7 +94,7 @@ PasajeController.filterPasajes = async (req, res) => {
         if(categoria && categoria != "m" && categoria != "a" && categoria != "j")
             throw new Error("Categoria de pasaje no valida")
         const pasajes = await Pasaje.find({ categoriaPasaje: categoria })
-        res.json(pasajes)
+        res.status(200).json(pasajes)
     } catch (error) {
         console.log(error)
         res.status(400).json({

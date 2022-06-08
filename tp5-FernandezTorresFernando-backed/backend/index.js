@@ -1,7 +1,9 @@
+//librerias
 const express = require("express")
 const cors = require("cors")
 const {mongoose} = require("./db")
 
+//creacion de la instancia del servidor express
 var app = express()
 
 //middlewares

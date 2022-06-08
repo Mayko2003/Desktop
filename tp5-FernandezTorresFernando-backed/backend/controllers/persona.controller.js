@@ -6,7 +6,7 @@ PersonaController.createPersona = async (req, res) => {
     const persona = new Persona(req.body)
     try {
         await persona.save()
-        res.json({
+        res.status(200).json({
             status: 1,
             message: "Persona creada correctamente"
         })
@@ -22,7 +22,7 @@ PersonaController.createPersona = async (req, res) => {
 PersonaController.getPersonas = async (req, res) => {
     try {
         const personas = await Persona.find()
-        res.json(personas)
+        res.status(200).json(personas)
     } catch (error) {
         console.log(error)
         res.status(400).json({
@@ -36,7 +36,7 @@ PersonaController.getPersona = async (req, res) => {
     try {
         const dni = req.params.dni
         const persona = await Persona.findOne({dni: dni})
-        res.json(persona)
+        res.status(200).json(persona)
     } catch (error) {
         console.log(error)
         res.status(400).json({
