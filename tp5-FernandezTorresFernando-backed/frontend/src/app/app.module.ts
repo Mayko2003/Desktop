@@ -12,6 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LibroFormComponent } from './components/libro-form/libro-form.component';
 import { DivisaFormComponent } from './components/divisa-form/divisa-form.component';
+import { ShowCategoryPipe } from './pipes/show-category.pipe';
+import { PasajeFormComponent } from './components/pasaje-form/pasaje-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DivisaFormComponent } from './components/divisa-form/divisa-form.compon
     HomeComponent,
     HeaderComponent,
     LibroFormComponent,
-    DivisaFormComponent
+    DivisaFormComponent,
+    ShowCategoryPipe,
+    PasajeFormComponent
   ],
   imports: [
     BrowserModule,

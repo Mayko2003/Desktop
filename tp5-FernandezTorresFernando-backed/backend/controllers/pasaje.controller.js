@@ -8,12 +8,11 @@ PasajeController.createPasaje = async (req, res) => {
     try {
         if (req.body.categoriaPasaje != "m" && req.body.categoriaPasaje != "a" && req.body.categoriaPasaje != "j")
             throw new Error("Categoria de pasaje no valida")
-        const dni = req.body.dniPasajero
-        const persona = await Persona.findOne({ dni: dni })
 
-        if(!persona) throw new Error("No existe la persona")
+        
+        const persona = await Persona.findOne({ _id: pasaje.pasajero})
 
-        pasaje.pasajero = persona._id
+        if (!persona) throw new Error("No existe la persona")
 
         await pasaje.save()
         res.status(200).json({
@@ -66,13 +65,11 @@ PasajeController.updatePasaje = async (req, res) => {
         var categoria = req.body.categoriaPasaje
         if (categoria && categoria != "m" && categoria != "a" && categoria != "j")
             throw new Error("Categoria de pasaje no valida")
-        
-        //evaluar dni
-        const dni = req.body.dniPasajero
-        const persona = await Persona.findOne({ dni: dni })
-        
-        if(persona) pasaje.pasajero = persona._id
-        pasaje._id = req.params.id
+
+        //evaluar id pasajero
+        const persona = await Persona.findOne({ _id: pasaje.pasajero})
+
+        if (!persona) throw new Error("No existe la persona")
 
         await Pasaje.updateOne({ _id: pasaje._id }, pasaje)
         res.status(200).json({
@@ -91,7 +88,7 @@ PasajeController.updatePasaje = async (req, res) => {
 PasajeController.filterPasajes = async (req, res) => {
     try {
         const categoria = req.query.categoria
-        if(categoria && categoria != "m" && categoria != "a" && categoria != "j")
+        if (categoria && categoria != "m" && categoria != "a" && categoria != "j")
             throw new Error("Categoria de pasaje no valida")
         const pasajes = await Pasaje.find({ categoriaPasaje: categoria })
         res.status(200).json(pasajes)
@@ -100,6 +97,19 @@ PasajeController.filterPasajes = async (req, res) => {
         res.status(400).json({
             status: 0,
             msg: "Error al filtrar los pasajes"
+        })
+    }
+}
+
+PasajeController.getPasaje = async (req, res) => {
+    try {
+        const pasaje = await Pasaje.findById(req.params.id).populate("pasajero")
+        res.status(200).json(pasaje)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            status: 0,
+            msg: "Error al obtener el pasaje"
         })
     }
 }
