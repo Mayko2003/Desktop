@@ -1,0 +1,44 @@
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">HOME</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="libroDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Libros
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="libroDropdown">
+                        <li><a class="dropdown-item" routerLink="/libros/crear">Crear</a></li>
+                        <li><a class="dropdown-item" routerLink="/libros">Mostrar Destacados</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="transaccionDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Transacciones
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="transaccionDropdown">
+                        <li><a class="dropdown-item" routerLink="/transacciones/crear">Crear</a></li>
+                        <li><a class="dropdown-item" routerLink="/transacciones">Mostrar Todas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="pasajeDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Pasajes
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="pasajeDropdown">
+                        <li><a class="dropdown-item" routerLink="/pasajes/crear">Crear</a></li>
+                        <li><a class="dropdown-item" routerLink="/pasajes">Mostrar Todos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
